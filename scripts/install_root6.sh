@@ -94,17 +94,14 @@ then
   # needed due to some problem with the ALICE HLT code
   mypatch ../root5_34_19_hlt.patch
 
-  # needed to compile root6 with newer versions of xrootd
   if [ "$build_root6" = "yes" ]; then
+    # needed to compile root6 with newer versions of xrootd:
     mypatch ../root6_xrootd.patch
     mypatch ../root6_00_find_xrootd.patch
+    # patches from Fedora, hopefully obsoleted in future by root6.08;
+    # needed to compile root6 with gcc 6:
     mypatch ../root-no-abi-check.patch
     mypatch ../root-abitags.patch
-  fi
-
-  # needed to compile root6 with gcc 6
-  if [ "$build_root6" = "yes" ]; then
-    mypatch ../root6-Replace-0x1p-61-GNU-or-C-1z-with-pow-2-61.patch
   fi
 
   if [ "$build_root6" = "no" ]; then
