@@ -84,10 +84,6 @@ then
     mysed 'LDFLAGS       = $(OPT) -m64 -mmacosx-version-min=$(MACOSXVERS)' 'LDFLAGS       = -m64 -mmacosx-version-min=$(MACOSXVERS)' config/Makefile.macosx64
   fi
 
-  # needed to compile with Apple LLVM 5.1, shouldn't hurt on other systems
-#  mypatch ../root5_34_17_LLVM51.patch | tee -a $logfile
-#  mypatch ../root5_34_17_linux_libc++.patch | tee -a $logfile
-
   # needed to solve problem with the TGeoManger for some CBM and Panda geometries
   mypatch ../root_TGeoShape.patch
 
