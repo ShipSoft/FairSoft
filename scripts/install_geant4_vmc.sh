@@ -6,7 +6,7 @@ if [ ! -d  $SIMPATH/transport/geant4_vmc ]; then
   git clone $GEANT4VMC_LOCATION
 
   cd $SIMPATH/transport/geant4_vmc
-  git checkout tags/$GEANT4VMCVERSION -b $GEANT4VERSION 
+  git checkout $GEANT4VMCVERSION -b $GEANT4VERSION 
 fi
 
 install_prefix=$SIMPATH_INSTALL
@@ -19,6 +19,9 @@ then
 
   # patch allowing neutrinos from external decayer to be copied to stack
   mypatch ../geant4vmc_neutrino.patch
+
+  # patch to interface with Python and access Bfield of a volume
+  mypatch ../geant4vmc_services.patch
 
   # bypass an error in the current development version of geant4vmc
   mypatch ../geant4_vmc_temp.patch

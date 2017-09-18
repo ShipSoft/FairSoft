@@ -1,0 +1,74 @@
+--- source/CMakeLists.txt
++++ source/CMakeLists.txt
+
+@@ -126,6 +126,8 @@ ROOT_GENERATE_DICTIONARY(
+   with_rootmap
+   ${CMAKE_CURRENT_SOURCE_DIR}/run/include/TG4RunConfiguration.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/run/include/TGeant4.h
++  ${CMAKE_CURRENT_SOURCE_DIR}/geometry/include/TG4MagneticField.h
++  ${CMAKE_CURRENT_SOURCE_DIR}/geometry/include/TG4GeometryServices.h
+   LINKDEF ${CMAKE_CURRENT_SOURCE_DIR}/geant4vmcLinkDef.h)
+ 
+ #----------------------------------------------------------------------------
+
+--- source/geant4vmcLinkDef.h
++++ source/geant4vmcLinkDef.h
+@@ -19,5 +19,6 @@
+  
+ #pragma link C++ class  TGeant4+;
+ #pragma link C++ class  TG4RunConfiguration+;
+-
++#pragma link C++ class  TG4MagneticField+;
++#pragma link C++ class  TG4GeometryServices+;
+ #endif
+
+--- source/geometry/include/TG4GeometryServices.h
++++ source/geometry/include/TG4GeometryServices.h
+@@ -83,6 +83,7 @@ class TG4GeometryServices : public TG4Verbose
+            // printing 
+     void PrintLimits(const G4String& name) const;
+     void PrintVolumeLimits(const G4String& volumeName) const;
++    void GetField(const G4String& volumeName, const G4double*, G4double*) const;
+     void PrintStatistics(G4bool open, G4bool close) const;
+     void PrintLogicalVolumeStore() const;
+     void PrintPhysicalVolumeStore() const;
+
+--- source/geometry/src/TG4GeometryServices.cxx
++++ source/geometry/src/TG4GeometryServices.cxx
+@@ -13,6 +13,7 @@
+ /// \author I. Hrivnacova; IPN, Orsay
+ 
+ #include "TG4GeometryServices.h"
++#include "TG4MagneticField.h"
+ #include "TG4MediumMap.h"
+ #include "TG4Medium.h"
+ #include "TG4Limits.h"
+@@ -24,6 +25,7 @@
+ 
+ #include <G4LogicalVolumeStore.hh>
+ #include <G4LogicalVolume.hh>
++#include <G4FieldManager.hh>
+ #include <G4PhysicalVolumeStore.hh>
+ #include <G4VPhysicalVolume.hh>
+ #include <G4Material.hh>
+@@ -492,7 +494,18 @@ void TG4GeometryServices::PrintVolumeLimits(const G4String& volumeName) const
+       G4cout << "has not the limits set." << G4endl;
+   }    
+ }            
+-
++//_____________________________________________________________________________
++void TG4GeometryServices::GetField(const G4String& volumeName, const G4double point[3], G4double bfield[3]) const
++{
++/// Find a logical volume with the specified name and 
++/// prints magnetic field at local point.
++    G4LogicalVolume* lv = FindLogicalVolume(volumeName, false);
++    G4FieldManager* fm = lv->GetFieldManager();
++    if (fm) {  
++       TG4MagneticField* fi = (TG4MagneticField*)fm->GetDetectorField();
++       fi->GetFieldValue(point,bfield);
++    }
++}
+ //_____________________________________________________________________________
+ void TG4GeometryServices::PrintStatistics(G4bool open, G4bool close) const
+ {
+

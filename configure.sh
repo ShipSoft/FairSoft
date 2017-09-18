@@ -301,7 +301,6 @@ then
 fi
 
 ###################### GEANT 4 Data ########################################
-echo "DEBUG $geant4_install_data_from_dir $onlyreco"
 if [ "$check" = "1" -a "$geant4_install_data_from_dir" = "yes" -a "$onlyreco" = "0" ];
 then
   source scripts/install_geant4_data.sh
