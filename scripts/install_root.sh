@@ -17,7 +17,7 @@ then
   git clone $ROOT_LOCATION
 
   cd $SIMPATH/tools/root
-  git checkout -b $ROOTVERSION $ROOTVERSION
+  git checkout $ROOTVERSION
 fi
 
 install_prefix=$SIMPATH_INSTALL
