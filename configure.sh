@@ -313,15 +313,6 @@ then
   source scripts/install_root.sh
 fi
 
-##################### G4Py #############################################
-
-if [ "$build_python" = "yes" ];
-then
-  if [ "$check" = "1" -a "$onlyreco" = "0" ];
-  then
-    source scripts/install_g4py.sh
-  fi
-fi
 
 ##################### Pluto #############################################
 

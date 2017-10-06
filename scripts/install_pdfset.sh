@@ -12,24 +12,24 @@ fi
 
 cd $install_data
 
-pdfset=("cteq6ll" "cteq66a" "cteq66a0" "cteq4m")
+if [ ! -d  $SIMPATH_INSTALL/share/lhapdf/PDFsets/cteq6 ];
+then
+
+pdfset=("cteq6l1" "cteq66" "cteq6" "CT09MCS")
+
 
 START=0
 END=${#pdfset[@]}
 
 for (( t=$START; t<$END; t++ )); do
   pdf=${pdfset[${t}]}
-  if [ ! "$pdf" = "cteq66a" ]; then  
-   if [ -f "$pdf.LHgrid" -o -f "$pdf.LHpdf" ];then
-    echo $pdf already installed
-   else
-    tt=$($SIMPATH_INSTALL/bin/lhapdf-getdata $pdf --dest=$install_data)
-    if [ "$tt" ]; then
-      echo cannot find $pdf $tt
-    fi
-   fi
-  fi 
+  if [ -f "$pdf" ];then
+   echo $pdf already installed
+  else
+   wget $PDFSET_LOCATION/$pdf.tar.gz -O- | tar xz -C $install_data
+  fi
 done
+fi
 
 cd $SIMPATH
 return 1

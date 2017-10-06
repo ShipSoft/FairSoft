@@ -3,10 +3,9 @@
 
 if [ ! -d  $SIMPATH/transport/geant4_vmc ]; then
   cd $SIMPATH/transport
-  git clone $GEANT4VMC_LOCATION
-
+  git clone $GEANT4VMC_LOCATION geant4_vmc
   cd $SIMPATH/transport/geant4_vmc
-  git checkout $GEANT4VMCVERSION -b $GEANT4VERSION 
+  git checkout $GEANT4VMCVERSION
 fi
 
 install_prefix=$SIMPATH_INSTALL
@@ -16,15 +15,16 @@ if (not_there Geant4_VMC $checkfile);
 then
 
   cd $SIMPATH/transport/geant4_vmc
-
-  # patch allowing neutrinos from external decayer to be copied to stack
-  mypatch ../geant4vmc_neutrino.patch
-
+# this is fixed in ShipSoft git
   # patch to interface with Python and access Bfield of a volume
-  mypatch ../geant4vmc_services.patch
+  # mypatch ../geant4vmc_services.patch
+
+# below are fixed in master branch
+  # patch allowing neutrinos from external decayer to be copied to stack
+  # mypatch ../geant4vmc_neutrino.patch
 
   # bypass an error in the current development version of geant4vmc
-  mypatch ../geant4_vmc_temp.patch
+  # mypatch ../geant4_vmc_temp.patch
 
   # patch needed when using gcc5
   if [ "$compiler" = "gcc" -a "$build_root6" = "no" ]; then

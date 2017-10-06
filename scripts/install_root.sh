@@ -112,7 +112,7 @@ then
   echo "make finished" 
 
   # add python command history to ROOT.py
-  mypatch ../../root_pythonhistory.patch
+  # mypatch ../../root_pythonhistory.patch does not really work
 
   cd $SIMPATH/tools/root/etc/vmc
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export CMAKE_LOCATION="http://www.cmake.org/files/v3.5/"
-export CMAKEVERSION_REQUIRED=cmake-3.5.2
-export CMAKEVERSION=cmake-3.5.2
+export CMAKE_LOCATION="http://www.cmake.org/files/v3.8/"
+export CMAKEVERSION_REQUIRED=cmake-3.8.2
+export CMAKEVERSION=cmake-3.8.2
 
 export GTEST_LOCATION="https://github.com/google/googletest/archive/"
 export GTESTVERSION=release-1.8.0
@@ -22,8 +22,8 @@ export PYTHIA6VERSION=pythia-6.4.28
 export HEPMC_LOCATION="http://lcgapp.cern.ch/project/simu/HepMC/download/"
 export HEPMCVERSION=2.06.09
 
-export PYTHIA8_LOCATION="http://home.thep.lu.se/~torbjorn/pythia8/"
-export PYTHIA8VERSION=pythia8226
+export PYTHIA8_LOCATION="https://github.com/ShipSoft/pythia8"
+export PYTHIA8VERSION=v8226-ship
 
 # Old versions available at: https://archive.apache.org/dist/xerces/c/3/sources/
 export XERCESC_LOCATION="https://archive.apache.org/dist/xerces/c/3/sources/"
@@ -36,16 +36,10 @@ export GEANT4_LOCATION="https://github.com/Geant4/geant4"
 export GEANT4VERSIONp=Geant4-10.3.1
 export GEANT4VERSION=geant4-10.3-release
 
+export ROOT_LOCATION="https://github.com/ShipSoft/root"
+export ROOTVERSION=v6-10-06-ship
 
-export ROOT_LOCATION="https://github.com/root-project/root.git"
-if [ "$build_root6" = "yes" ]; then
-  export ROOTVERSION=v6-08-04
-else
-  # Root v5.34.34
-  export ROOTVERSION=v5-34-34
-fi
-
-export XROOTDVERSION=4.5.0
+export XROOTDVERSION=4.6.1
 
 export PLUTO_LOCATION="http://web-docs.gsi.de/%7Ehadeshyp/pluto/v5.37/"
 export PLUTOVERSION=pluto_v5.37
@@ -57,8 +51,8 @@ export VGM_LOCATION="http://svn.code.sf.net/p/vgm/code/tags/"
 export VGMVERSION=v4-3
 export VGMDIR=VGM-4.3.0
 
-export GEANT4VMC_LOCATION="http://github.com/vmc-project/geant4_vmc.git"
-export GEANT4VMCVERSION=d220b71c29e529300948e34285875892518eda57
+export GEANT4VMC_LOCATION="https://github.com/ShipSoft/geant4_vmc.git"
+export GEANT4VMCVERSION=Oct17-ship-2
 
 export MILLEPEDE_LOCATION="http://svnsrv.desy.de/public/MillepedeII/tags/"
 export MILLEPEDE_VERSION=V04-03-01
@@ -110,7 +104,7 @@ export FAIRROOT_LOCATION="https://github.com/FairRootGroup/FairRoot.git"
 export FAIRROOTVERSION=dev
 
 export DDS_LOCATION="https://github.com/FairRootGroup/DDS.git"
-export DDSVERSION=master
+export DDSVERSION=1.4
 
 export ALIROOT_LOCATION="http://git.cern.ch/pub/AliRoot"
 export ALIROOTVERSION=master

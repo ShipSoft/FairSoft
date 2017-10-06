@@ -3,15 +3,11 @@
 if [ ! -d  $SIMPATH/generators/pythia8 ];
 then
   cd $SIMPATH/generators
-  if [ ! -e $PYTHIA8VERSION.tgz ];
-  then
-    echo "*** Downloading pythia8 sources ***"
-    download_file $PYTHIA8_LOCATION/$PYTHIA8VERSION.tgz
-  fi
-  untar pythia8 $PYTHIA8VERSION.tgz
+  git clone $PYTHIA8_LOCATION pythia8
+  git checkout $PYTHIA8VERSION
   if [ -d $PYTHIA8VERSION ];
   then
-    ln -s $PYTHIA8VERSION pythia8
+    ln -s pythia8 $PYTHIA8VERSION
   fi
 fi
 
@@ -28,16 +24,16 @@ then
 
   cd $SIMPATH/generators/pythia8
 
-# needed to have multiple instances of Pythia8 but only one Evtgen
-mypatch ../pythia8_evtgen.patch | tee -a $logfile
+# needed to have multiple instances of Pythia8 but only one Evtgen, now in ShipSoft 
+#  mypatch ../pythia8_evtgen.patch | tee -a $logfile
 
-if [ "$platform" = "macosx" ]; then
+  if [ "$platform" = "macosx" ]; then
    # needed to link with correct gfortran run-time
    mypatch ../pythia8_Darwin.patch | tee -a $logfile
-fi
+  fi
 
 #  USRLDFLAGSSHARED="$CXXFLAGS" ./configure  --enable-shared  --with-hepmc3-lib=$HEPINSTALLDIR/lib --with-hepmc3-include=$HEPINSTALLDIR/include  --with-hepmc3-version=$HEPMCVERSION  --with-lhapdf5-lib=$HEPINSTALLDIR/lib --with-lhapdf5-include=$HEPINSTALLDIR/include --with-lhapdf5-version=$LHAPDF_VERSION
-  USRLDFLAGSSHARED="$CXXFLAGS" ./configure  --enable-shared  --with-hepmc2=$HEPINSTALLDIR --with-lhapdf5-lib=$HEPINSTALLDIR/lib --with-lhapdf5-include=$HEPINSTALLDIR/include --with-lhapdf5-version=$LHAPDF_VERSION --with-evtgen=$SIMPATH/generators/EvtGen/$EVTGEN_VERSION --with-evtgen-lib=$install_prefix/lib --with-evtgen-include=$install_prefix/include/EvtGen --with-evtgen-version=$EVTGEN_VERSION
+  USRLDFLAGSSHARED="$CXXFLAGS" ./configure  --enable-shared  --with-hepmc2=$HEPINSTALLDIR --with-lhapdf6-lib=$HEPINSTALLDIR/lib --with-lhapdf6-include=$HEPINSTALLDIR/include --with-lhapdf6-version=$LHAPDF_VERSION --with-evtgen=$SIMPATH/generators/EvtGen/$EVTGEN_VERSION --with-evtgen-lib=$install_prefix/lib --with-evtgen-include=$install_prefix/include/EvtGen --with-evtgen-version=$EVTGEN_VERSION
 
   if [ "$compiler" = "PGI" ];
   then
