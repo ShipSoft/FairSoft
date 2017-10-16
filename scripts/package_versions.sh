@@ -23,7 +23,7 @@ export HEPMC_LOCATION="http://lcgapp.cern.ch/project/simu/HepMC/download/"
 export HEPMCVERSION=2.06.09
 
 export PYTHIA8_LOCATION="https://github.com/ShipSoft/pythia8"
-export PYTHIA8VERSION=v8226-ship
+export PYTHIA8VERSION=v8230-ship
 
 # Old versions available at: https://archive.apache.org/dist/xerces/c/3/sources/
 export XERCESC_LOCATION="https://archive.apache.org/dist/xerces/c/3/sources/"
@@ -112,6 +112,9 @@ export ALIROOTVERSION=master
 export LHAPDF_LOCATION="http://www.hepforge.org/archive/lhapdf/"
 export LHAPDF_VERSION=5.9.1
 export LHAPDF_TAR=lhapdf-${LHAPDF_VERSION}.tar.gz
+
+export PDFSET_LOCATION="https://www.hepforge.org/archive/lhapdf/pdfsets/"
+export PDFSET_VERSION="6.2"
 
 export LOG4CPP_LOCATION="https://downloads.sourceforge.net/project/log4cpp/log4cpp-1.1.x%20%28new%29/log4cpp-1.1/"
 export LOG4CPP_VERSION=1.1.1

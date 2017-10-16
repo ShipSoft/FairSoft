@@ -26,7 +26,8 @@ for (( t=$START; t<$END; t++ )); do
   if [ -f "$pdf" ];then
    echo $pdf already installed
   else
-   wget $PDFSET_LOCATION/$pdf.tar.gz -O- | tar xz -C $install_data
+   echo "?? $PDFSET_LOCATION$PDFSET_VERSION/$pdf.tar.gz"
+   wget $PDFSET_LOCATION$PDFSET_VERSION/$pdf.tar.gz -O- | tar xz -C $install_data
   fi
 done
 fi

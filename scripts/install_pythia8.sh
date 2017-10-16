@@ -33,7 +33,9 @@ then
   fi
 
 #  USRLDFLAGSSHARED="$CXXFLAGS" ./configure  --enable-shared  --with-hepmc3-lib=$HEPINSTALLDIR/lib --with-hepmc3-include=$HEPINSTALLDIR/include  --with-hepmc3-version=$HEPMCVERSION  --with-lhapdf5-lib=$HEPINSTALLDIR/lib --with-lhapdf5-include=$HEPINSTALLDIR/include --with-lhapdf5-version=$LHAPDF_VERSION
-  USRLDFLAGSSHARED="$CXXFLAGS" ./configure  --enable-shared  --with-hepmc2=$HEPINSTALLDIR --with-lhapdf6-lib=$HEPINSTALLDIR/lib --with-lhapdf6-include=$HEPINSTALLDIR/include --with-lhapdf6-version=$LHAPDF_VERSION --with-evtgen=$SIMPATH/generators/EvtGen/$EVTGEN_VERSION --with-evtgen-lib=$install_prefix/lib --with-evtgen-include=$install_prefix/include/EvtGen --with-evtgen-version=$EVTGEN_VERSION
+# problems appeared compiling with lhapdf6 back to lhapdf5
+#  USRLDFLAGSSHARED="$CXXFLAGS" ./configure  --enable-shared  --with-hepmc2=$HEPINSTALLDIR --with-lhapdf6-lib=$HEPINSTALLDIR/lib --with-lhapdf6-include=$HEPINSTALLDIR/include --with-lhapdf6-version=$LHAPDF_VERSION --with-evtgen=$SIMPATH/generators/EvtGen/$EVTGEN_VERSION --with-evtgen-lib=$install_prefix/lib --with-evtgen-include=$install_prefix/include/EvtGen --with-evtgen-version=$EVTGEN_VERSION
+  USRLDFLAGSSHARED="$CXXFLAGS" ./configure  --enable-shared  --with-hepmc2=$HEPINSTALLDIR --with-lhapdf5-lib=$HEPINSTALLDIR/lib --with-lhapdf5-include=$HEPINSTALLDIR/include --with-lhapdf5-version=$LHAPDF_VERSION --with-evtgen=$SIMPATH/generators/EvtGen/$EVTGEN_VERSION --with-evtgen-lib=$install_prefix/lib --with-evtgen-include=$install_prefix/include/EvtGen --with-evtgen-version=$EVTGEN_VERSION
 
   if [ "$compiler" = "PGI" ];
   then
